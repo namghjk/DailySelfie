@@ -21,7 +21,7 @@ public class showImage_activity extends AppCompatActivity {
 
     private void addEvents() {
     }
-
+    ///
     private void addControlls() {
         imgV = findViewById(R.id.imageview1);
         Bundle bundle = getIntent().getExtras();
