@@ -39,6 +39,9 @@ import Notification.ReminderBoardCast;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
+
     private static final String CHANNEL_ID ="CHANEL_1" ;
     ListView lvImage;
     FileAdapter fileadapter;
@@ -231,6 +234,8 @@ public class MainActivity extends AppCompatActivity {
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (TIME_PUSH_NOTIFI * 1000), pendingIntent);
     }
+
+
 
 
 }
