@@ -17,7 +17,8 @@
             android:maxWidth="50dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:id="@+id/imageview">
+            android:id="@+id/imageview"
+            android:focusable="false">
         </ImageView>
         <TextView
             android:layout_width="fill_parent"
@@ -26,7 +27,10 @@
             android:textSize="15dp"
             android:text="abc.jpg"
             android:layout_weight="1"
-            android:paddingTop="14dp"/>
+            android:paddingTop="14dp"
+            android:focusable="false"/>
+
+
 
 
 

@@ -20,11 +20,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -52,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
     private String currentPhotoPath;
     public static final int TIME_PUSH_NOTIFI = 5;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +72,16 @@ public class MainActivity extends AppCompatActivity {
                 ShowImage(i);
             }
         });
+
+        lvImage.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                DeleteFile(fileArrayList.get(i).getFilePath());
+                getFileInDir();
+                fileadapter.notifyDataSetChanged();
+                return false;
+            }
+        });
     }
 
     private void addControls() {
@@ -79,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
         getFileInDir();
         fileadapter = new FileAdapter(MainActivity.this,R.layout.listview_image,fileArrayList);
         lvImage.setAdapter(fileadapter);
-
 
     }
 
@@ -100,6 +109,9 @@ public class MainActivity extends AppCompatActivity {
         pushNoti();
         startService(new Intent(this, ReminderBoardCast.class));
     }
+
+
+
 
     private void CheckPermission(){
         if (android.os.Build.VERSION.SDK_INT >= 23) {
@@ -173,6 +185,24 @@ public class MainActivity extends AppCompatActivity {
             getFileInDir();
             fileadapter.notifyDataSetChanged();
         }
+    }
+
+    private boolean DeleteFile(String path){
+        try{
+            java.io.File f = new java.io.File(path);
+            if(f.exists()){
+                return f.delete();
+            } else {
+                try{
+                    f.mkdir();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }catch (Exception e){
+        }
+        return false;
+
     }
 
     private java.io.File createImageFile() throws IOException {
