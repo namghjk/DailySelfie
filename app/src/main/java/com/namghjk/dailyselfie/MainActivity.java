@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int CAMERA_REQUEST_CODE = 102;
     private String dirPath = "/storage/emulated/0/Android/data/com.namghjk.dailyselfie/files/Pictures/";
     private String currentPhotoPath;
-    public static final int TIME_PUSH_NOTIFI = 5;
+    public static final int TIME_PUSH_NOTIFI = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == CAMERA_REQUEST_CODE){
             getFileInDir();
             fileadapter.notifyDataSetChanged();
+            pushNoti();
         }
     }
 

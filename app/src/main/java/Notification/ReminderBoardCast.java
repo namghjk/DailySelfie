@@ -17,8 +17,8 @@ public class ReminderBoardCast extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent  resultIntent = new Intent(context,MainActivity.class);
-        PendingIntent resultPendingIntent = PendingIntent.getActivity(context,1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"notifySelfie")
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(context,0,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"notifyAppSelfy")
                 .setSmallIcon(R.drawable.ic_camera)
                 .setContentTitle("Daily Selfie")
                 .setContentText("Time for another selfie right now")
